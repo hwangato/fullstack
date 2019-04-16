@@ -1,4 +1,5 @@
 //https://zhuanlan.zhihu.com/p/59355857
+//https://summerrouxin.github.io/2018/05/29/ast-practise/ast-practise/
 const cwdPath = process.cwd()
 const fs = require('fs')
 const fse = require('fs-extra')
@@ -49,7 +50,7 @@ var style = `<style lang="less" rel="stylesheet/less" scoped>
 /* css太多了，省略其他内容 */
 </style>`
 
-var script = `<script>
+var script = `
 import wepy from 'wepy'
 export default class UserCard extends wepy.component {
   props = {
@@ -63,7 +64,7 @@ export default class UserCard extends wepy.component {
  }
   methods = {
  async follow() {
- await someHttpRequest() //请求某个接口
+ await someHttpRequest()
  this.isFollow = !this.isFollow
  this.$apply()
  }
@@ -77,7 +78,7 @@ export default class UserCard extends wepy.component {
  this.$log('view')
  }
 }
-</script>`
+`
 
 var testScript = `
 export default {
@@ -156,7 +157,7 @@ fs.writeFile(targetFilePath,'')
 
 templateHandler(template);
 styleHandler(style);
-scriptHandler(testScript);
+scriptHandler(script);
 
 
 
@@ -316,5 +317,36 @@ javascriptParser.parse(javascriptContent).then((javascriptAst)=>{
   reject(e)
 })*/
 
+}
+
+const componentTemplate = `
+export default {
+  data() {
+    return DATA
+  },
+
+  props:PROPS,
+
+  methods: METHODS,
+
+  computed: COMPUTED,
+
+  watch:WATCH,
+
+}
+`
+
+
+const componentTemplateBuilder = function(ast,vistors){
+ const buildRequire = template(componentTemplate);
+  ast = buildRequire({
+    PROPS: arrayToObject(vistors.props.getData()),
+    LIFECYCLE: arrayToObject(vistors.lifeCycle.getData()),
+    DATA: arrayToObject(vistors.data.getData()),
+    METHODS: arrayToObject(vistors.methods.getData()),
+    COMPUTED: arrayToObject(vistors.computed.getData()),
+    WATCH: arrayToObject(vistors.watch.getData()),
+ });
+ return ast
 }
 
