@@ -1,0 +1,28 @@
+{
+  "name": "astdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "xml-parser": "^1.2.1",
+    "fast-xml-parser": "^3.12.16",
+    "xml2js": "^0.4.19",
+    "htmlparser2": "^3.10.1",
+    "cssom": "^0.3.6",
+    "babylon": "^6.18.0",
+    "@babel/generator": "^7.1.2",
+    "@babel/plugin-syntax-jsx": "^7.0.0",
+    "@babel/traverse": "^7.1.0",
+    "@babel/types": "^7.1.2"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

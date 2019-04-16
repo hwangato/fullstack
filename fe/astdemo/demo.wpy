@@ -1,0 +1,58 @@
+//wepy版
+<template>
+ <view class="userCard">
+ <view class="basic">
+ <view class="avatar">
+ <image src="{{info.portrait}}"></image>
+ </view>
+ <view class="info">
+ <view class="name">{{info.nickName}}</view>
+ <view class="label" wx:if="{{info.label}}">
+ <view class="label-text" wx:for="{{info.label}}">{{item}}</view>
+ </view>
+ <view class="onsale">在售宝贝{{sellingCount}}</view>
+ <view class="follow " @tap="follow">{{isFollow ? '取消关注' : '关注'}}</view>
+ </view>
+ </view>
+ </view>
+</template>
+<style lang="less" rel="stylesheet/less" scoped>
+.userCard {
+  position:relative;
+  background: #FFFFFF;
+  box-shadow: 0 0 10rpx 0 rgba(162,167,182,0.31);
+  border-radius: 3rpx;
+  padding:20rpx;
+  position: relative;
+}
+/* css太多了，省略其他内容 */
+</style>
+<script>
+import wepy from 'wepy'
+export default class UserCard extends wepy.component {
+  props = {
+    info:{
+      type:Object,
+ default:{}
+ }
+ }
+  data = {
+    isFollow: false,
+ }
+  methods = {
+ async follow() {
+ await someHttpRequest() //请求某个接口
+ this.isFollow = !this.isFollow
+ this.$apply()
+ }
+ }
+  computed = {
+    sellingCount(){
+ return this.info.sellingCount || 1
+ }
+ }
+  onLoad(){
+ this.$log('view')
+ }
+}
+</script>
