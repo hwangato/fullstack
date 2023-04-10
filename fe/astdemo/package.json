@@ -13,7 +13,7 @@
     "fs-extra": "^6.0.1",
     "xml-parser": "^1.2.1",
     "fast-xml-parser": "^3.12.16",
-    "xml2js": "^0.4.19",
+    "xml2js": "^0.5.0",
     "htmlparser2": "^3.10.1",
     "cssom": "^0.3.6",
     "babylon": "^6.18.0",
